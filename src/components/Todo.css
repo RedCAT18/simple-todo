@@ -1,0 +1,27 @@
+a {
+  text-decoration: none;
+}
+
+.todo__list {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.todo__list:hover {
+  background-color: #d9e6f2;
+}
+
+.todo__link {
+  color: #336699;
+  margin-left: 20px;
+}
+
+.todo__line {
+  text-decoration: line-through;
+  color: #bb2445;
+}
