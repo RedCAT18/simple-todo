@@ -10,18 +10,15 @@ const Detail = ({ todo, check }) => {
   const param = useParams();
   if (!todo) {
     let todos = JSON.parse(localStorage.getItem("todos"));
-    // console.log(todos);
-    // console.log(id);
     todo = todos.filter(t => t.id === parseInt(param.id))[0];
   }
-
+  console.log(todo);
   const convertDate = d => {
     const date = new Date(d);
     return date.toString().slice(0, 24);
   };
 
   const checkedTodo = todo.done ? "todo_done" : "";
-
   return (
     <div className="detail__container">
       <div className="detail__board">
@@ -33,7 +30,7 @@ const Detail = ({ todo, check }) => {
         <button
           className={`detail__check todo__btn ${checkedTodo}`}
           disabled={todo.done}
-          onClick={todo => check(todo)}
+          onClick={() => check(todo)}
         >
           Done
         </button>
@@ -46,14 +43,13 @@ const Detail = ({ todo, check }) => {
 };
 
 function mapStateToProps(state, ownProps) {
+  // console.log(state);
   const {
-    history,
     match: {
       params: { id }
     }
   } = ownProps;
-
-  return { todo: state.find(todo => todo.id === parseInt(id)), history };
+  return { todo: state.find(todo => todo.id === parseInt(id)) };
 }
 
 function mapDispatchToProps(dispatch) {

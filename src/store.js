@@ -15,9 +15,13 @@ const setTodo = todos => {
 const checkTodo = todo => {
   todo.done = !todo.done;
   // console.log(todo);
+  const currentTodos = store.getState();
+  const newState = currentTodos.map(t => (t.id === todo.id ? (t = todo) : t));
+  console.log(newState);
+  localStorage.setItem("todos", JSON.stringify(newState));
   return {
     type: CHECK,
-    todo
+    newState
   };
 };
 
@@ -50,7 +54,7 @@ const reducer = (state = [], action) => {
       // console.log("2: ", state);
       return [...state];
     case CHECK:
-      return [state.filter(todo => todo.id !== action.todo.id), action.todo];
+      return action.newState;
     case DELETE:
       return state.filter(todo => todo.id !== action.id);
     default:
