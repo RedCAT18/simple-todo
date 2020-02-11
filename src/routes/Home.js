@@ -52,6 +52,7 @@ function Home({ todos, addTodo, setTodo }) {
 }
 
 function mapStateToProps(state, ownProps) {
+  console.log(state);
   return { todos: state };
 }
 
